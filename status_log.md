@@ -80,3 +80,9 @@ index e69de29..5627fb9 100644
 
 Lệnh `git commit -a` tự động đưa các thay đổi của những file đã được theo dõi (tracked files) vào staging area và thực hiện commit ngay. Nó không có tác dụng với các file mới chưa được theo dõi (untracked files) vì Git chưa lưu thông tin về chúng trong index.
 
+\# Part C: Difference between git fetch and git pull
+
+\- `git fetch`: Tải về các commit, nhánh và dữ liệu mới nhất từ remote repository về máy local nhưng \*\*không tự động gộp (merge)\*\* vào thư mục làm việc hiện tại.
+
+\- `git pull`: Là sự kết hợp của `git fetch` và `git merge`. Lệnh này vừa tải dữ liệu mới từ remote về, vừa \*\*tự động gộp\*\* trực tiếp các thay đổi đó vào nhánh local đang làm việc.
+
