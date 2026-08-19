@@ -1,0 +1,4 @@
+Line 1: My first note
+Line 2: My second note
+Line 3: My third note
+Line 4: An extra line for step 6
