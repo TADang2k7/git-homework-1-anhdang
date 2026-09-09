@@ -1,0 +1,56 @@
+bài 1
+mkdir ex3
+cd ex3
+mkdir dir1
+mkdir dir2
+touch HelloWorld.txt
+cp HelloWorld.txt dir1/ 
+cp -i HelloWorld.txt dir1/
+mv HelloWorld.txt Hi.txt  
+mv Hi.txt dir2/
+
+bài 2
+
+ln dir2/Hi.txt Hi-hard
+ln dir2/Hi.txt dir1/Hi-hard
+ln dir2/Hi.txt dir2/Hi-hard
+ln -s dir2/Hi.txt Hi-sym
+rm Hi-hard
+ls -li -R
+total 8
+1313683 lrwxrwxrwx 1 anhdang anhdang   11 Sep  7 01:04 Hi-sym -> dir2/Hi.txt
+1313663 drwxrwxr-x 2 anhdang anhdang 4096 Sep  7 01:04 dir1
+1313664 drwxrwxr-x 2 anhdang anhdang 4096 Sep  7 01:04 dir2
+
+./dir1:
+total 0
+1313614 -rw-rw-r-- 1 anhdang anhdang 0 Sep  4 15:36 HelloWorld.txt
+1311010 -rw-rw-r-- 2 anhdang anhdang 0 Sep  4 15:35 Hi-hard
+
+./dir2:
+total 0
+1311010 -rw-rw-r-- 2 anhdang anhdang 0 Sep  4 15:35 Hi-hard
+
+bài 3
+
+ls /bin /usr/bin | sort | uniq | wc -l
+ls /bin /usr/bin | sort | uniq | grep "zip"
+seq 1 35 > myfile.txt
+head -n 5 myfile.txt
+tail -n 5 myfile.txt
+wc myfile.txt
+ls -la | tee full_listing.txt
+
+bài 4
+mkdir permissions
+cd permissions
+touch secret.txt shared.txt public.txt
+
+chmod 600 secret.txt
+chmod 664 shared.txt
+chmod 777 public.txt 
+umask
+touch newfile.txt 
+ls -l newfile.txt 
+giải thích
+- Giả sử kết quả lệnh `umask` là 0022 (hoặc 022). - Khi chạy `ls -l newfile.txt`, tệp có quyền là: -rw-r--r-- (tương ứng 644). - Nguyên nhân: + Trong Linux, quyền mặc định ban đầu khi tạo một tệp văn bản (file thông thường) tối đa là 666 (rw-rw-rw-), hệ thống không tự động cấp quyền thực thi (x). + Giá trị umask hoạt động như một bộ lọc (mặt nạ) để loại bỏ bớt quyền: 0022 (--- -w- -w-). + Quyền thực tế được tính bằng cách lấy quyền cơ sở trừ đi umask: * Owner: 6 - 0 = 6 (rw-) * Group: 6 - 2 = 4 (r--) * Others: 6 - 2 = 4 (r--) + Do đó, tệp mới tạo sẽ tự động nhận quyền 644 (-rw-r--r--). 
